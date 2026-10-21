@@ -123,8 +123,8 @@ export function OverviewView() {
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-3">
         {/* Volume chart */}
         <Card className="rounded-xl border-neutral-200 shadow-sm lg:col-span-2">
-          <CardContent className="p-6">
-            <div className="mb-5 flex items-center justify-between">
+          <CardContent className="p-4 sm:p-6">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-base font-semibold text-neutral-900">Volume — last 14 days</h2>
               <span className="text-xs text-neutral-500">completed transfers, USD equivalent</span>
             </div>
@@ -149,7 +149,7 @@ export function OverviewView() {
 
         {/* Transfer status breakdown */}
         <Card className="rounded-xl border-neutral-200 shadow-sm">
-          <CardContent className="space-y-2.5 p-6">
+          <CardContent className="space-y-2.5 p-4 sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-neutral-900">Transfer status</h2>
             <StatusRow
               icon={Clock}
@@ -182,7 +182,7 @@ export function OverviewView() {
       {/* Recent activity */}
       <section className="mt-6">
         <Card className="rounded-xl border-neutral-200 shadow-sm">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-base font-semibold text-neutral-900">Recent activity</h2>
               <Link

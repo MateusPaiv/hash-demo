@@ -87,12 +87,12 @@ export function BankCard({ account }: { account: ExternalAccount }) {
             : 'rounded-xl border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md'
         }
       >
-        <CardContent className="flex items-start gap-4 p-5">
-          <div className="rounded-xl bg-neutral-100 p-2.5">
+        <CardContent className="flex items-start gap-3 p-4 sm:gap-4 sm:p-5">
+          <div className="shrink-0 rounded-xl bg-neutral-100 p-2.5">
             <Icon className="size-5 text-neutral-700" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <p className="truncate text-sm font-semibold text-neutral-900">{account.bank_name}</p>
               <Badge variant="outline" className="rounded-lg text-[10px] uppercase tracking-wide">
                 {account.currency}

@@ -103,22 +103,50 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      {/* Mobile top bar */}
-      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 md:hidden">
-        {brand}
-        <div className="flex max-w-[55%] items-center gap-1 overflow-x-auto">
-          {nav}
-          <button
-            onClick={signOut}
-            aria-label="Sign out"
-            className="shrink-0 rounded-xl p-2 text-neutral-500 hover:bg-neutral-100"
-          >
-            <LogOut className="size-4" />
-          </button>
+      {/* Mobile chrome */}
+      <div className="sticky top-0 z-40 border-b border-neutral-200 bg-white px-4 py-3 md:hidden">
+        <div className="flex items-center justify-between">
+          {brand}
+          <div className="flex items-center gap-1">
+            <Link
+              href="/admin"
+              aria-label="Backoffice"
+              className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
+            >
+              <Wrench className="size-4" />
+            </Link>
+            <button
+              onClick={signOut}
+              aria-label="Sign out"
+              className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
+            >
+              <LogOut className="size-4" />
+            </button>
+          </div>
+        </div>
+        <div className="mt-2 flex gap-1 overflow-x-auto">
+          {NAV_ITEMS.map((item) => {
+            const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition-colors',
+                  active
+                    ? 'bg-neutral-900 text-white'
+                    : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
+                )}
+              >
+                <item.icon className="size-3.5" />
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
-      <main className="px-4 py-8 md:ml-60 md:px-10">
+      <main className="px-4 py-6 sm:py-8 md:ml-60 md:px-10">
         <div className="mx-auto max-w-5xl">{children}</div>
       </main>
     </div>

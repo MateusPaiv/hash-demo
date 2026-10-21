@@ -2,7 +2,7 @@
 
 import { Banknote, Clock, Landmark, Lock, Loader2, ShieldAlert } from 'lucide-react';
 import type { FiatCurrency } from '@hash/shared';
-import { client, CURRENCY_ENDORSEMENT, ApiError } from '@/lib/api/client';
+import { client, CURRENCY_ENDORSEMENT } from '@/lib/api/client';
 import { useRealtimeQuery } from '@/hooks/use-realtime';
 import { CURRENCY_LABEL, CURRENCY_NAME } from '@/lib/constants';
 import { formatAmount, formatDateTime } from '@/lib/format';
@@ -44,22 +44,22 @@ function ReceiveCard({ currency, approved, endorsements }: { currency: FiatCurre
 
   return (
     <Card className="rounded-xl border-neutral-200 bg-white shadow-sm">
-      <CardContent className="p-5">
-        <div className="mb-3 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="rounded-xl bg-neutral-100 p-2">
+      <CardContent className="p-4 sm:p-5">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <div className="shrink-0 rounded-xl bg-neutral-100 p-2">
               <Banknote className="size-4 text-neutral-700" />
             </div>
-            <div>
-              <p className="text-sm font-semibold text-neutral-900">
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-neutral-900">
                 {CURRENCY_LABEL[currency]} · {CURRENCY_NAME[currency]}
               </p>
-              <p className="text-xs text-neutral-500">endorsement: {needed}</p>
+              <p className="truncate text-xs text-neutral-500">endorsement: {needed}</p>
             </div>
           </div>
           {active ? null : (
             <div className="flex items-center gap-1.5 text-xs text-amber-700">
-              <ShieldAlert className="size-3.5" />
+              <ShieldAlert className="size-3.5 shrink-0" />
               Este rail precisa do endorsement
             </div>
           )}

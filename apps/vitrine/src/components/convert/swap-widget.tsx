@@ -216,10 +216,10 @@ export function SwapWidget({
 
   return (
     <Card className="rounded-xl border-neutral-200 shadow-sm">
-      <CardContent className="p-6">
+      <CardContent className="p-4 sm:p-6">
         {/* You send */}
-        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
-          <div className="mb-2 flex items-center justify-between">
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-3.5 sm:p-4">
+          <div className="mb-2 flex items-center justify-between gap-2">
             <Label htmlFor="send-amount" className="text-xs uppercase tracking-wide text-neutral-500">
               You send
             </Label>
@@ -231,7 +231,7 @@ export function SwapWidget({
             placeholder="0.00"
             value={amount}
             onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ''))}
-            className="h-12 border-0 bg-transparent p-0 font-display text-3xl font-semibold tabular-nums shadow-none focus-visible:ring-0"
+            className="h-12 border-0 bg-transparent p-0 font-display text-2xl font-semibold tabular-nums shadow-none focus-visible:ring-0 sm:text-3xl"
             disabled={busy}
           />
           <p className="mt-1 text-xs text-neutral-400">{CURRENCY_NAME[sendCurrency]}</p>
@@ -251,12 +251,12 @@ export function SwapWidget({
         </div>
 
         {/* You receive */}
-        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
-          <div className="mb-2 flex items-center justify-between">
+        <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-3.5 sm:p-4">
+          <div className="mb-2 flex items-center justify-between gap-2">
             <Label className="text-xs uppercase tracking-wide text-neutral-500">You receive</Label>
             <CurrencySelect id="receive-currency" value={receiveCurrency} onChange={handleReceiveChange} />
           </div>
-          <div className="flex h-12 items-center font-display text-3xl font-semibold tabular-nums text-neutral-900">
+          <div className="flex h-12 items-center font-display text-2xl font-semibold tabular-nums text-neutral-900 sm:text-3xl">
             {receiveAmount > 0 ? (
               receiveAmount.toLocaleString('en-US', { maximumFractionDigits: 2 })
             ) : (
@@ -326,7 +326,7 @@ export function SwapWidget({
 
         {/* Quote breakdown */}
         <div className="mt-5 space-y-2 text-sm">
-          <div className="flex items-center justify-between text-neutral-500">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-neutral-500">
             <span className="flex items-center gap-1.5">
               <RefreshCw className={rateLoading ? 'size-3.5 animate-spin' : 'size-3.5'} />
               Rate
@@ -335,7 +335,7 @@ export function SwapWidget({
               {rate != null ? `1 ${CURRENCY_LABEL[sendCurrency]} ≈ ${rate.toFixed(4)} ${CURRENCY_LABEL[receiveCurrency]}` : '—'}
             </span>
           </div>
-          <div className="flex items-center justify-between text-neutral-500">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-neutral-500">
             <span className="flex items-center gap-1.5">
               Developer fee ({feeLabel}%)
               <Tooltip>

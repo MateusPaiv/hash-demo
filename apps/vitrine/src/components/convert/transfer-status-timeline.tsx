@@ -17,7 +17,7 @@ export function TransferStatusTimeline({ state }: { state: TransferState }) {
   // Exception path (canceled, refunded, …) — a badge communicates it best.
   if (currentIndex === -1) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <span className="text-sm text-neutral-500">Esta transferência saiu do fluxo padrão:</span>
         <TransferStateBadge state={state} />
       </div>

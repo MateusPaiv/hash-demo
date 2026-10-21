@@ -221,17 +221,23 @@ async function main() {
       await waitText(pageA, /Active/);
     });
 
-    log('\n— responsive pass: 390px viewport, key routes, no horizontal overflow');
-    await pageA.setViewportSize({ width: 390, height: 844 });
+    log('\n— responsive pass: 360px viewport, all client & admin routes, no horizontal overflow');
+    await pageA.setViewportSize({ width: 360, height: 800 });
     const mobileRoutes = [
+      '/onboarding',
       '/dashboard',
       '/dashboard/convert',
       '/dashboard/receive',
       '/dashboard/banks',
       '/admin',
+      '/admin/kyc',
       '/admin/transfers',
+      '/admin/webhooks',
+      '/admin/idempotency',
+      '/admin/emails',
+      '/admin/fees',
     ];
-    await check('no horizontal overflow on key routes @390px', async () => {
+    await check('no horizontal overflow on all routes @360px', async () => {
       for (const route of mobileRoutes) {
         await pageA.goto(`${BASE}${route}`);
         await pageA.waitForTimeout(1_200); // let client data render

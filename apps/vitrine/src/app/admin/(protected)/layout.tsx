@@ -133,10 +133,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Mobile chrome */}
       <div className="sticky top-0 z-40 border-b border-neutral-200 bg-white px-4 py-3 md:hidden">
         <div className="flex items-center justify-between">
-          <span className="font-display text-base font-semibold">Hash Ops</span>
-          <button onClick={signOut} aria-label="Sign out" className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100">
-            <LogOut className="size-4" />
-          </button>
+          <div className="flex items-center gap-2">
+            <div className="rounded-xl bg-neutral-900 p-1.5">
+              <ShieldCheck className="size-4 text-white" />
+            </div>
+            <span className="font-display text-base font-semibold">Hash Ops</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Link
+              href="/dashboard"
+              aria-label="Client app"
+              className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
+            >
+              <ShieldCheck className="size-4" />
+            </Link>
+            <button onClick={signOut} aria-label="Sign out" className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900">
+              <LogOut className="size-4" />
+            </button>
+          </div>
         </div>
         <div className="mt-2 flex gap-1 overflow-x-auto">
           {ADMIN_NAV.map((item) => {
@@ -149,7 +163,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   'flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium',
                   active ? 'bg-neutral-900 text-white' : 'text-neutral-600 hover:bg-neutral-100',
                 )}
-              >                <item.icon className="size-3.5" />
+              >
+                <item.icon className="size-3.5" />
                 {item.label}
               </Link>
             );
@@ -157,7 +172,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </div>
 
-      <main className="px-4 py-8 md:ml-60 md:px-10">
+      <main className="px-4 py-6 sm:py-8 md:ml-60 md:px-10">
         <div className="mx-auto max-w-6xl">{children}</div>
       </main>
     </div>

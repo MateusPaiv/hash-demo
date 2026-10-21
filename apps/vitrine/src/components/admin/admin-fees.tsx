@@ -59,7 +59,7 @@ export function AdminFees() {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <Card className="rounded-xl border-neutral-200 bg-white shadow-sm">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="mb-4 flex items-center gap-2.5">
               <div className="rounded-xl bg-neutral-100 p-2">
                 <CircleDollarSign className="size-4 text-neutral-700" />
@@ -90,14 +90,14 @@ export function AdminFees() {
         </Card>
 
         <Card className="rounded-xl border-neutral-200 bg-white shadow-sm">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="mb-4 flex items-center gap-2.5">
               <div className="rounded-xl bg-neutral-100 p-2">
                 <ReceiptText className="size-4 text-neutral-700" />
               </div>
               <h2 className="text-base font-semibold text-neutral-900">Fee payout account</h2>
             </div>
-            <p className="font-mono text-xs text-neutral-600">{payoutAccount}</p>
+            <p className="break-all font-mono text-xs text-neutral-600">{payoutAccount}</p>
             <p className="mt-2 text-xs text-neutral-500">
               Conta que recebe as taxas (
               <span className="font-mono text-xs">/developer/fee_external_account</span>) — fixture

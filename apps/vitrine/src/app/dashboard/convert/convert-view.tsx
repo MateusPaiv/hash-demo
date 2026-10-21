@@ -59,7 +59,13 @@ export function ConvertView() {
     () => transfers?.find((t) => !isTerminalState(t.state)) ?? null,
     [transfers],
   );
-  const pendingTransferId = liveTransfer?.id ?? justCreatedId;
+  // Once `transfers` includes `justCreatedId` in a terminal state, it's no longer pending.
+  const justCreatedStillPending = useMemo(() => {
+    if (!justCreatedId) return null;
+    const found = transfers?.find((t) => t.id === justCreatedId);
+    return found && isTerminalState(found.state) ? null : justCreatedId;
+  }, [justCreatedId, transfers]);
+  const pendingTransferId = liveTransfer?.id ?? justCreatedStillPending;
 
   // Resolve every "awaiting webhook" toast this tab owns once its transfer
   // settles. The registry survives navigation, so an orphaned toast is still
@@ -83,7 +89,6 @@ export function ConvertView() {
             id: transfer.id,
           });
       }
-      setJustCreatedId((current) => (current === transfer.id ? null : current));
     }
   }, [transfers]);
 
@@ -112,7 +117,7 @@ export function ConvertView() {
           {/* Live transfer being confirmed via webhook */}
           {liveTransfer ? (
             <Card className="rounded-xl border-neutral-900/10 shadow-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
                   <h2 className="flex items-center gap-2 text-base font-semibold text-neutral-900">
                     <Clock className="size-4 text-amber-500" />

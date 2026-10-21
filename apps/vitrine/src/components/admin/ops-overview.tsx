@@ -69,7 +69,7 @@ export function OpsOverview() {
 
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-3">
         <Card className="rounded-xl border-neutral-200 bg-white shadow-sm lg:col-span-1">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-neutral-900">Customers by status</h2>
             <div className="space-y-2.5">
               {STATUS_ROWS.map((status) => (
@@ -85,9 +85,9 @@ export function OpsOverview() {
         </Card>
 
         <Card className="rounded-xl border-neutral-200 bg-white shadow-sm lg:col-span-2">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <h2 className="mb-4 text-base font-semibold text-neutral-900">Transfers by state</h2>
-            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2 sm:grid-cols-3">
               {STATE_ROWS.map((state) => (
                 <div key={state} className="flex flex-col items-start gap-1 rounded-xl border border-neutral-200 px-3 py-2.5">
                   <TransferStateBadge state={state} />
@@ -102,7 +102,7 @@ export function OpsOverview() {
       </div>
 
       <Card className="mt-6 rounded-xl border-neutral-200 bg-white shadow-sm">
-        <CardContent className="p-6">
+        <CardContent className="p-4 sm:p-6">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-base font-semibold text-neutral-900">Latest webhook deliveries</h2>
             <Link href="/admin/webhooks" className="text-sm font-medium text-neutral-900 underline-offset-4 hover:underline">
