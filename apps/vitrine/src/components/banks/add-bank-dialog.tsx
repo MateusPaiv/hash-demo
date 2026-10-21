@@ -177,7 +177,9 @@ export function AddBankDialog({
               <Label>Currency</Label>
               <Select value={currency} onValueChange={(v) => changeCurrency(v as FiatCurrency)}>
                 <SelectTrigger className="w-full">
-                  <SelectValue />
+                  <SelectValue>
+                    {CURRENCY_LABEL[currency]} — {CURRENCY_NAME[currency]}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {FIAT_CURRENCIES.map((c) => (
@@ -193,7 +195,9 @@ export function AddBankDialog({
                 <Label>Rail</Label>
                 <Select value={usdRail} onValueChange={(v) => changeUsdRail(v as 'ach' | 'wire')}>
                   <SelectTrigger className="w-full">
-                    <SelectValue />
+                    <SelectValue>
+                      {usdRail === 'ach' ? 'ACH — standard' : 'Wire — same day'}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="ach">ACH — standard</SelectItem>
@@ -248,7 +252,9 @@ export function AddBankDialog({
                     }}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue />
+                      <SelectValue>
+                        {accountSubtype === 'checking' ? 'Checking' : 'Savings'}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="checking">Checking</SelectItem>
@@ -284,9 +290,18 @@ export function AddBankDialog({
               </div>
               <div className="space-y-1.5">
                 <Label>Account type</Label>
-                <Select value={accountSubtype} onValueChange={(v) => setValue('account_subtype', v as 'checking' | 'savings')}>
+                <Select
+                  value={accountSubtype}
+                  onValueChange={(v) => {
+                    const next = v as 'checking' | 'savings';
+                    setAccountSubtype(next);
+                    setValue('account_subtype', next);
+                  }}
+                >
                   <SelectTrigger className="w-full">
-                    <SelectValue />
+                    <SelectValue>
+                      {accountSubtype === 'checking' ? 'Checking' : 'Savings'}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="checking">Checking</SelectItem>
@@ -333,7 +348,15 @@ export function AddBankDialog({
                   }}
                 >
                   <SelectTrigger className="w-full">
-                    <SelectValue />
+                    <SelectValue>
+                      {{
+                        cpf: 'CPF',
+                        cnpj: 'CNPJ',
+                        email: 'Email',
+                        phone: 'Phone',
+                        evp: 'Random key (EVP)',
+                      }[pixKeyType]}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="cpf">CPF</SelectItem>

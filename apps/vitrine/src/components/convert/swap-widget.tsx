@@ -51,7 +51,7 @@ function CurrencySelect({
   return (
     <Select value={value} onValueChange={(v) => onChange(v as Currency)}>
       <SelectTrigger id={id} className="w-[132px] bg-white">
-        <SelectValue />
+        <SelectValue>{CURRENCY_LABEL[value]}</SelectValue>
       </SelectTrigger>
       <SelectContent>
         {ALL_CURRENCIES.map((currency) => (
@@ -129,9 +129,11 @@ export function SwapWidget({
     () => accounts.filter((a) => a.currency === receiveCurrency && a.status === 'active'),
     [accounts, receiveCurrency],
   );
-  const destinationAccountId = eligibleAccounts.some((account) => account.id === pickedAccountId)
-    ? pickedAccountId
-    : (eligibleAccounts[0]?.id ?? null);
+  const destinationAccount =
+    eligibleAccounts.find((account) => account.id === pickedAccountId) ??
+    eligibleAccounts[0] ??
+    null;
+  const destinationAccountId = destinationAccount?.id ?? null;
 
   useEffect(() => {
     idempotencyKeyRef.current = null;
@@ -280,12 +282,16 @@ export function SwapWidget({
                   onValueChange={(v) => setPickedAccountId(v)}
                 >
                   <SelectTrigger className="w-full bg-white">
-                    <SelectValue placeholder="Choose a bank account" />
+                    <SelectValue placeholder="Choose a bank account">
+                      {destinationAccount
+                        ? `${destinationAccount.bank_name} · ${destinationAccount.account_holder_name} (${CURRENCY_LABEL[destinationAccount.currency]})`
+                        : null}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     {eligibleAccounts.map((account) => (
                       <SelectItem key={account.id} value={account.id}>
-                        {account.bank_name} · {CURRENCY_LABEL[account.currency]}
+                        {account.bank_name} · {account.account_holder_name} ({CURRENCY_LABEL[account.currency]})
                       </SelectItem>
                     ))}
                   </SelectContent>
