@@ -34,6 +34,8 @@ export function TransferStatusTimeline({ state }: { state: TransferState }) {
           <li key={step.state} className="flex flex-1 items-center last:flex-none">
             <div className="flex flex-col items-center gap-1.5">
               <div
+                aria-label={step.label}
+                title={step.label}
                 className={cn(
                   'flex size-9 items-center justify-center rounded-full border transition-colors',
                   reached
@@ -44,9 +46,10 @@ export function TransferStatusTimeline({ state }: { state: TransferState }) {
               >
                 <Icon className="size-4" />
               </div>
+              {/* Icon-only on phones; the state badge above carries the PT label */}
               <span
                 className={cn(
-                  'whitespace-nowrap text-[11px] font-medium',
+                  'hidden whitespace-nowrap text-[11px] font-medium sm:block',
                   reached ? 'text-neutral-900' : 'text-neutral-400',
                 )}
               >
@@ -56,8 +59,9 @@ export function TransferStatusTimeline({ state }: { state: TransferState }) {
             {index < STEP_META.length - 1 ? (
               <div
                 className={cn(
-                  'mx-2 mb-5 h-px flex-1',
+                  'mx-2 h-px flex-1',
                   index < currentIndex ? 'bg-neutral-900' : 'bg-neutral-200',
+                  'mb-0 sm:mb-5',
                 )}
               />
             ) : null}

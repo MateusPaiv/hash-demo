@@ -52,7 +52,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             key={item.href}
             href={item.href}
             className={cn(
-              'flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
+              'flex shrink-0 items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
               active
                 ? 'bg-neutral-900 text-white'
                 : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
@@ -106,12 +106,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Mobile top bar */}
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-neutral-200 bg-white px-4 py-3 md:hidden">
         {brand}
-        <div className="flex items-center gap-1">
+        <div className="flex max-w-[55%] items-center gap-1 overflow-x-auto">
           {nav}
           <button
             onClick={signOut}
             aria-label="Sign out"
-            className="rounded-xl p-2 text-neutral-500 hover:bg-neutral-100"
+            className="shrink-0 rounded-xl p-2 text-neutral-500 hover:bg-neutral-100"
           >
             <LogOut className="size-4" />
           </button>

@@ -116,7 +116,7 @@ export function OpsOverview() {
           ) : (
             <div className="divide-y divide-neutral-100">
               {events.slice(0, 5).map((event) => (
-                <div key={event.event_id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
+                <div key={event.event_id} className="flex flex-wrap items-center gap-x-4 gap-y-2 py-3 first:pt-0 last:pb-0">
                   <div className="rounded-xl bg-neutral-100 p-2.5">
                     <Activity className="size-4 text-neutral-600" />
                   </div>

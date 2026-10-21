@@ -81,7 +81,7 @@ function ReceiveCard({ currency, approved, endorsements }: { currency: FiatCurre
                 <Landmark className="size-4" />
                 {va.deposit_instructions.bank_name}
               </p>
-              <div className="space-y-0.5 font-mono text-xs text-blue-900/80">
+              <div className="space-y-0.5 font-mono text-xs break-all text-blue-900/80">
                 {instructionLines(va.deposit_instructions).map((line) => (
                   <p key={line}>{line}</p>
                 ))}

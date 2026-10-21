@@ -33,7 +33,7 @@ function DepositInstructions({ transfer }: { transfer: Transfer }) {
         <Landmark className="size-4" />
         Send {CURRENCY_LABEL[transfer.source.currency]} to fund this transfer
       </p>
-      <div className="grid gap-1 font-mono text-xs text-blue-900/80">
+      <div className="grid gap-1 break-all font-mono text-xs text-blue-900/80">
         <span>{instructions.bank_name}</span>
         {instructions.routing_number ? <span>Routing · {instructions.routing_number}</span> : null}
         {instructions.account_number ? <span>Account · {instructions.account_number}</span> : null}
@@ -159,7 +159,7 @@ export function ConvertView() {
               <div className="space-y-3">
                 {transfers.slice(0, 6).map((transfer) => (
                   <Card key={transfer.id} className="rounded-xl border-neutral-200 shadow-sm">
-                    <CardContent className="flex items-center gap-4 p-4">
+                    <CardContent className="flex flex-wrap items-center gap-x-4 gap-y-3 p-4">
                       <div className="rounded-xl bg-neutral-100 p-2.5">
                         <ArrowDownUp className="size-4 text-neutral-600" />
                       </div>

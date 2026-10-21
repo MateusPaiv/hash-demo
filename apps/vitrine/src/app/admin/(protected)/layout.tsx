@@ -149,8 +149,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   'flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium',
                   active ? 'bg-neutral-900 text-white' : 'text-neutral-600 hover:bg-neutral-100',
                 )}
-              >
-                <item.icon className="size-3.5" />
+              >                <item.icon className="size-3.5" />
                 {item.label}
               </Link>
             );

@@ -200,7 +200,7 @@ export function OverviewView() {
             ) : (
               <div className="divide-y divide-neutral-100">
                 {transfers.slice(0, 5).map((transfer) => (
-                  <div key={transfer.id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
+                  <div key={transfer.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 py-3 first:pt-0 last:pb-0">
                     <div className="rounded-xl bg-neutral-100 p-2.5">
                       <ArrowDownUp className="size-4 text-neutral-600" />
                     </div>

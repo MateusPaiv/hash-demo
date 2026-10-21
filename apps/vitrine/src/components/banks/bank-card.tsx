@@ -106,7 +106,7 @@ export function BankCard({ account }: { account: ExternalAccount }) {
             <p className="mt-0.5 truncate text-xs text-neutral-500">{account.account_holder_name}</p>
             <div className="mt-2 space-y-0.5">
               {detailLines(account).map((line) => (
-                <p key={line} className="font-mono text-xs text-neutral-500">
+                <p key={line} className="break-all font-mono text-xs text-neutral-500">
                   {line}
                 </p>
               ))}

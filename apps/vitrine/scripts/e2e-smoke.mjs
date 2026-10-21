@@ -221,6 +221,27 @@ async function main() {
       await waitText(pageA, /Active/);
     });
 
+    log('\n— responsive pass: 390px viewport, key routes, no horizontal overflow');
+    await pageA.setViewportSize({ width: 390, height: 844 });
+    const mobileRoutes = [
+      '/dashboard',
+      '/dashboard/convert',
+      '/dashboard/receive',
+      '/dashboard/banks',
+      '/admin',
+      '/admin/transfers',
+    ];
+    await check('no horizontal overflow on key routes @390px', async () => {
+      for (const route of mobileRoutes) {
+        await pageA.goto(`${BASE}${route}`);
+        await pageA.waitForTimeout(1_200); // let client data render
+        const overflow = await pageA.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        );
+        if (overflow > 1) throw new Error(`${route} overflows by ${overflow}px`);
+      }
+    });
+
     log(failures === 0 ? '\nE2E: ALL CHECKS PASSED\n' : `\nE2E: ${failures} CHECK(S) FAILED\n`);
   } finally {
     if (browser) await browser.close();
