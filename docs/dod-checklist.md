@@ -227,4 +227,4 @@ npm run verify:e2e                                   # 19 browser checks (~90s, 
 | G4 | i18n EN/ES/PT-BR absent | ES/BR customers see EN | S5 |
 | G5 | Resend emails: mocked queue→send pipeline live in `/admin/emails`; HTTP call pending `RESEND_API_KEY` | Notifications don't leave the demo | S5 |
 | G6 | COP / Faster Payments rails deferred beyond endorsement UI | "6 rails" expectation gap | later |
-| G7 | Git remote missing — work unpushed | No backup/CI | S0 (now) |
+| G7 | ~~Git remote missing~~ **RESOLVED** — pushed to `github.com/MateusPaiv/hash-demo` (main); deploy at Vercel via Root Directory `apps/vitrine` | — | ✅ |
