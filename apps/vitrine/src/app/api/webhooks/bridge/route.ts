@@ -10,8 +10,6 @@ import { verifyBridgeWebhookSignature } from '@/lib/vault/webhook-verification';
  * is the cryptographic verdict; the simulated pipeline marks its deliveries
  * with delivery: 'simulated' on the audit trail.
  */
-export const runtime = 'nodejs';
-
 export async function POST(request: Request): Promise<Response> {
   const rawBody = await request.text();
   const header = request.headers.get('X-Webhook-Signature');
