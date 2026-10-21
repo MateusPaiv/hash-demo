@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$comment": "Tailwind v4 ships lightningcss as platform-gated optional deps; some Vercel npm install modes skip the Linux variant, so we install it explicitly before building.",
+  "installCommand": "npm ci && npm install --no-save --platform=linux --libc=glibc lightningcss"
+}
