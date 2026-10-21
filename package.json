@@ -3,11 +3,17 @@
   "private": true,
   "version": "0.1.0",
   "description": "Hash — fiat-to-crypto payments platform. Vitrine (Next.js, mocked) + Cofre foundation artifacts.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "npm run dev --prefix apps/vitrine",
-    "build": "npm run build --prefix apps/vitrine",
-    "start": "npm run start --prefix apps/vitrine",
-    "lint": "npm run lint --prefix apps/vitrine",
-    "typecheck": "npx tsc --noEmit -p apps/vitrine/tsconfig.json"
+    "dev": "npm run dev -w vitrine",
+    "build": "npm run build -w vitrine",
+    "start": "npm run start -w vitrine",
+    "lint": "npm run lint -w vitrine",
+    "typecheck": "npm run typecheck -w vitrine",
+    "verify:mock": "npm run verify:mock -w vitrine",
+    "verify:e2e": "npm run verify:e2e -w vitrine"
   }
 }

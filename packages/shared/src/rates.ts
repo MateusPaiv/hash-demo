@@ -7,7 +7,11 @@ import type { Currency } from './transfer';
 export interface ExchangeRate {
   from: Currency;
   to: Currency;
-  /** Mid-market rate as a decimal string, e.g. "0.9985". */
+  /** Mid-market: units of `to` per 1 unit of `from`. */
   mid_rate: string;
+  /** Customer buys `to` — slightly fewer units than mid. */
+  buy_rate: string;
+  /** Other side of the spread — slightly more units than mid. */
+  sell_rate: string;
   fetched_at: string;
 }

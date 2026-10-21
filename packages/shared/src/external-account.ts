@@ -6,9 +6,20 @@
  * dynamic "Add Bank" form and the future Cofre share one source of truth.
  */
 
-export type FiatCurrency = 'usd' | 'eur' | 'mxn' | 'brl';
+/**
+ * The 6 fiat currencies with bridge fiat off-ramp coverage (see product scope):
+ * USD, EUR, GBP, MXN, BRL, COP.
+ */
+export type FiatCurrency = 'usd' | 'eur' | 'gbp' | 'mxn' | 'brl' | 'cop';
 
-export type ExternalAccountRail = 'ach' | 'wire' | 'iban' | 'clabe' | 'pix';
+export type ExternalAccountRail =
+  | 'ach'
+  | 'wire'
+  | 'iban'
+  | 'faster_payments'
+  | 'clabe'
+  | 'pix'
+  | 'bank_transfer_co';
 
 export type ExternalAccountStatus = 'active' | 'pending' | 'deactivated';
 
@@ -55,6 +66,23 @@ export interface ClabeExternalAccount extends ExternalAccountBase {
   clabe: string;
 }
 
+/** GBP — FasterPayments (sort code + account number). */
+export interface FasterPaymentsExternalAccount extends ExternalAccountBase {
+  rail: 'faster_payments';
+  currency: 'gbp';
+  sort_code: string;
+  account_number: string;
+}
+
+/** COP — Colombian bank transfer (institution + account). */
+export interface BankTransferCoExternalAccount extends ExternalAccountBase {
+  rail: 'bank_transfer_co';
+  currency: 'cop';
+  bank_name: string;
+  account_number: string;
+  account_subtype: 'checking' | 'savings';
+}
+
 export type PixKeyType = 'cpf' | 'cnpj' | 'email' | 'phone' | 'evp';
 
 /** BRL — Pix key (CPF/CNPJ/email/phone/EVP). */
@@ -69,5 +97,7 @@ export type ExternalAccount =
   | AchExternalAccount
   | WireExternalAccount
   | IbanExternalAccount
+  | FasterPaymentsExternalAccount
   | ClabeExternalAccount
-  | PixExternalAccount;
+  | PixExternalAccount
+  | BankTransferCoExternalAccount;

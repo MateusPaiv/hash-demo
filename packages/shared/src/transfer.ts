@@ -35,6 +35,10 @@ export const CANCELLABLE_TRANSFER_STATES: readonly TransferState[] = [
   'awaiting_funds',
 ] as const;
 
+/** Spec aliases — same arrays the Cofre and the UI both import. */
+export const TERMINAL_STATES = TERMINAL_TRANSFER_STATES;
+export const CANCELLABLE_STATES = CANCELLABLE_TRANSFER_STATES;
+
 /** Ordered happy-path states (used by the UI status timeline). */
 export const HAPPY_PATH_STATES: readonly TransferState[] = [
   'awaiting_funds',
